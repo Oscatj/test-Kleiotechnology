@@ -1,0 +1,32 @@
+  <body>
+    <h2 class="title-g">Todos los productos</h2>
+    <mat-grid-list cols="4" rowHeight="2:2">
+      <mat-grid-tile *ngFor="let product of productsList">
+        <mat-card color="primary" class="container">
+          <div class="imagen">
+            <img mat-card-image loading="lazy" src={{product.images[0]}} [alt]="product.title">
+          </div>
+          <mat-card-content>
+            <div class="encabezado">
+              <label class="title">{{product.title}}</label>
+              <div>
+                <label class="label-action" for="">{{product.price | currency: '$': 'symbol': '4.2-2'}}</label>
+              </div>
+            </div>
+            <label class="desc">{{product.description}}</label>
+          </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    </mat-grid-list>
+    <div class="btn-page">
+      <button mat-stroked-button (click)="previousPage()" [disabled]="page === 0">
+        <mat-icon class="btn-back" aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
+        Anterior
+      </button>
+      <button mat-flat-button color="primary" (click)="nextPage()">
+        Siguiente
+        <mat-icon class="btn-forward"  aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward"></mat-icon>
+      </button>
+    </div>
+  </body>
+  

@@ -1,0 +1,38 @@
+*{
+    padding: 2px;
+}
+.example-form{
+    padding: 10px;
+}
+.title{
+    width: 30%;
+    padding-right: 2%;
+}
+.desc{
+    width: 45%;
+    padding-right: 2%;
+}
+.price{
+    width: 20%;
+}
+.cant{
+    width: 15%;
+    padding-right: 2%;
+}
+.marca{
+    width: 25%;
+    padding-right: 2%;
+}
+.categoria{
+    width: 25%;
+    padding-right: 2%;
+}
+.cla{
+    width: 28%;
+}
+.btn-prod{
+    padding: 0 20px 0 20px;
+}
+table {
+    width: 100%;
+  }
