@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsI } from 'src/app/models/products.models';
 import { ApisService } from 'src/app/services/apis.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ApisService } from 'src/app/services/apis.service';
 export class ProductsComponent{
   page: number = 0;
 
-  productsList: Array<any> = [];
+  productsList: ProductsI[] = [];
   title: any;
   constructor(private apiServices: ApisService) {
     apiServices.getProducts().subscribe( (res: any)=>{
@@ -26,7 +27,7 @@ export class ProductsComponent{
   previousPage(){
     this.page -= 12;
     this.apiServices.getProducts(this.page).subscribe((res: any) => {
-      this.productsList = res.products;
+      this.productsList = res.products as ProductsI[];
     });
   }
 

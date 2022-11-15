@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProductsI } from 'src/app/models/products.models';
+import { ProductsAddI } from '../models/productAdd.models';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,7 @@ export class ApisService {
       }
     });
   }
-  
+  public postProducts(body: ProductsAddI){
+    return this.http.post(`${this.urlBase}products/add`, body);
+  }
 }

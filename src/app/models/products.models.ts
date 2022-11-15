@@ -1,11 +1,11 @@
-interface ProductsI {
+export interface ProductsI {
     id: number,
     title: string,
     brand: string,
     category: string,
     description: string,
     discountPercentage: number,
-    images: [],
+    images: Array<String>,
     price: number,
     rating: number,
     stock: number,

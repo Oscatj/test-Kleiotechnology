@@ -4,6 +4,22 @@
 .example-form{
     padding: 10px;
 }
+.div-alert{
+    position:relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    margin: 10px;
+    text-align: center;
+    width: 20em;
+    background: rgba(255, 0, 0, 0.176);
+    color: rgb(156, 3, 3);
+    padding: 10px;
+}
+.div-alert p {
+    font-size: 15px;
+}
+
 .title{
     width: 30%;
     padding-right: 2%;
