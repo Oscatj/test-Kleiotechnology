@@ -51,4 +51,13 @@
 }
 table {
     width: 100%;
-  }
+}
+table thead{
+    text-align: justify;
+}
+.edith{
+    color: blue;
+}
+.delete{
+    color: red;
+}

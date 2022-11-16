@@ -1,17 +1,18 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProductsI } from 'src/app/models/products.models';
 import { ApisService } from 'src/app/services/apis.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ProductsI } from 'src/app/models/products.models';
 
 @Component({
   selector: 'app-adm',
   templateUrl: './adm.component.html',
   styleUrls: ['./adm.component.css']
 })
-export class AdmComponent {
+export class AdmComponent implements OnInit{
   products: ProductsI[] = [];
+  index: number = 0;
 
   productForm: FormGroup = this.fb.group({
     title: this.fb.control("", [Validators.required, Validators.maxLength(30)]),
@@ -26,7 +27,9 @@ export class AdmComponent {
 
   constructor(private fb: FormBuilder,
               private apiServices: ApisService,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog) {} 
+
+  ngOnInit(): void {}
 
   addProducts(){
     if(this.productForm.invalid){
@@ -43,17 +46,31 @@ export class AdmComponent {
         category: this.productForm.value.category,
         rating: this.productForm.value.rating,
       },
-    ).subscribe( (res: any)=>{
-      //console.log("Producto creado con exito");
+    ).subscribe((res:ProductsI) => {
+      this.products.push(res);
       this.openDialog();
     }); 
   }
+
   openDialog():void{
     const dialogRef = this.dialog.open(DialogComponent, {});
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     })
   }
+
+  deleteProduct(product: ProductsI){
+    const producto = {id: product.id}
+    this.apiServices.deleteProduct(producto.id!).subscribe();
+    this.products = this.products.filter((p:ProductsI) => p.id != product.id);
+  }
+
+  /*updateProduct(product: ProductsI){
+    const producto = {id: this.products[0], product}
+    this.apiServices.updateProduct(producto.id, producto.product).subscribe();
+    this.products = this.products.filter((p:ProductsI) => p.id != product.id);
+  }*/
+
   validators(){
     return this.productForm.invalid && this.productForm.touched;
   }

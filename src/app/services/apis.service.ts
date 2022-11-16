@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductsI } from 'src/app/models/products.models';
-import { ProductsAddI } from '../models/productAdd.models';
+import { ProductsI } from '../models/products.models';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,10 @@ export class ApisService {
 
   constructor(private http: HttpClient) { }
 
+  listProducts(){
+    return this.http.get(`${this.urlBase}products`);
+  }
+
   getProducts (page: number = 0){
     return this.http.get(`${this.urlBase}products`, {
       params: {
@@ -19,8 +23,18 @@ export class ApisService {
         limit: 12
       }
     });
-  }
-  public postProducts(body: ProductsAddI){
+  } 
+
+  postProducts(body: ProductsI): Observable<ProductsI>{
     return this.http.post(`${this.urlBase}products/add`, body);
   }
+
+  deleteProduct(id: number): Observable<ProductsI>{
+    return this.http.delete(`${this.urlBase}products/${id}`)
+  }
+
+  updateProduct(id: String, updateProduct: ProductsI): Observable<ProductsI>{
+    return this.http.put(`${this.urlBase}products${id}`, updateProduct);
+  }
+
 }

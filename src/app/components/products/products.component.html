@@ -4,11 +4,11 @@
       <mat-grid-tile *ngFor="let product of productsList">
         <mat-card color="primary" class="container">
           <div class="imagen">
-            <img mat-card-image loading="lazy" src={{product.images[0]}} [alt]="product.title">
+            <img mat-card-image loading="lazy" src={{product.images![0]}} [alt]="product.title">
           </div>
           <mat-card-content>
             <div class="encabezado">
-              <label class="title">{{product.title}}</label>
+              <label class="title">{{product.title!}}</label>
               <div>
                 <label class="label-action" for="">{{product.price | currency: '$': 'symbol': '4.2-2'}}</label>
               </div>
